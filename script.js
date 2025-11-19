@@ -50,10 +50,13 @@ cells.forEach(cell => {
         board[id - 1] = currentSymbol;
         cell.textContent = currentSymbol;
 
-        if (checkWinner()) {
+        let winnerCombo = checkWinner();
+
+           if (winnerCombo) {
             msg.textContent = `${currentPlayer}, congratulations you won!`;
-            disableBoard();
-            return;
+            highlightWinnerCells(winnerCombo);
+           disableBoard();
+           return;
         }
 
         switchTurn();
@@ -77,12 +80,24 @@ function disableBoard() {
 }
 
 function checkWinner() {
-    return winningCombos.some(combo => {
+    for (let combo of winningCombos) {
         let [a, b, c] = combo;
-        return (
+
+        if (
             board[a - 1] !== "" &&
             board[a - 1] === board[b - 1] &&
             board[a - 1] === board[c - 1]
-        );
+        ) {
+            return combo;   // <-- ye winner combo return karega
+        }
+    }
+
+    return null;
+}
+
+function highlightWinnerCells(combo) {
+    combo.forEach(i => {
+        cells[i - 1].style.background = "purple";
+        cells[i - 1].style.color = "black";  // text visible rahe
     });
 }
