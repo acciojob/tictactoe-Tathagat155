@@ -1,6 +1,6 @@
 //your JS code here. If required.
-const p1 = document.getElementById("player-1");
-const p2 = document.getElementById("player-2");
+const p1 = document.getElementById("player1");
+const p2 = document.getElementById("player2");
 const startBtn = document.getElementById("submit");
 
 const inputSection = document.getElementById("input-section");
@@ -101,3 +101,5 @@ function highlightWinnerCells(combo) {
         cells[i - 1].style.color = "black";  // text visible rahe
     });
 }
+
+
